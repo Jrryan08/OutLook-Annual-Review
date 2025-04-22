@@ -1,6 +1,6 @@
 # OutLook Telecom: Annual Data Review
 
-[![Launch the App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://countrywisedatalab.streamlit.app/)
+[![Launch the App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://outlookdatareview.streamlit.app/)
 
 ### How to run it on your own machine
 
