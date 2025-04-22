@@ -11,5 +11,5 @@ Visualizations = st.Page("Visualizations.py", title="Visualizations", icon="📊
 Predictions = st.Page("Predictions.py", title="Predictions", icon="🤖")
 Conlusion = st.Page("Conlusion.py", title="Conlusion", icon="🎬")
 
-page = st.navigation([Welcome,About,Explore,Conlusion,Visualizations,Predictions ])
+page = st.navigation([Welcome,About,Explore,Visualizations,Predictions,Conlusion ])
 page.run()
