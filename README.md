@@ -1,17 +1,36 @@
-#  Welcome to CounrtWise_DataLab!
+# OutLook Telecom: Annual Data Review
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+[![Launch the App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://countrywisedatalab.streamlit.app/)
 
 ### How to run it on your own machine
 
 1. Install the requirements
 
    ```
-   $ pip install -r requirements.txt
+    pip install -r requirements.txt
    ```
 
 2. Run the app
 
    ```
-   $ streamlit run src/App.py
+    streamlit run /src/App.py
    ```
+
+### Overview
+
+   ```
+   TBD
+   ```
+
+### Features
+   ```
+    TBD
+   ```
+### Special Thanks
+  
+  ```
+    TBD
+
+   ```
+
+
