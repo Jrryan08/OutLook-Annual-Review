@@ -84,7 +84,7 @@ elif(selected=="02: Summary"):
             "Columns": ", ".join(columns),
             "Count": len(columns)
         }
-        
+
     dtype_df = pd.DataFrame(dtype_details).T.reset_index()
     dtype_df.columns = ['Data Type', 'Columns', 'Count']
     st.write(dtype_df)
