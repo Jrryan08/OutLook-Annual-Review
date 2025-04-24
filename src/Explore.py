@@ -36,8 +36,8 @@ if(selected=="01: Dictionary"):
     - Provide **data-driven recommendations** to support OutLook Telecom’s customer retention and business growth strategies.
     """)
     st.subheader(":violet[Columns & Descriptions]")
-    
-    st.write("Columns in the dataset", dataset.columns)
+    dataset_columns = pd.DataFrame({'Columns': dataset.columns})
+    st.dataframe(dataset_columns, width=700)
 
     field_options = dataset_dictionary['Field'].unique()  
     selected_field = st.selectbox("Select a field to view its description:", field_options)
