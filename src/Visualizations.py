@@ -31,13 +31,13 @@ selected_page = option_menu(
 
 # Page 1: Customer Demographics
 if selected_page == "Demographics":
-    st.title("Customer Demographics and Churn Analysis")
+    st.subheader(":violet[Customer Demographics]")
 
 # Page 2: Service and Subscription
 if selected_page == "Services":
-    st.title("Service and Subscription Features vs Churn")
+    st.subheader(":violet[Services and Subscriptions]")
     
 # Page 3: Financial Trends and Customer Lifetime
 if selected_page == "Financial Trends":
-    st.title("Financial Trends and Customer Lifetime")
+    st.subheader(":violet[Financial Trends and Customer Lifetime]")
     
