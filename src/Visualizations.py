@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly.express as px
 import seaborn as sns
 
 from streamlit_option_menu import option_menu
@@ -17,6 +18,7 @@ st.markdown(
 st.subheader(":violet[Data Visualization]")
 
 dataset = pd.read_csv("assets/telecom_customer_churn.csv")
+city_Population_dataset = pd.read_csv("assets/telecom_zipcode_population.csv")
 
 dataset_cleaned = dataset.dropna(subset=['Gender', 'Churn Category', 'Tenure in Months', 'Monthly Charge', 'Total Charges'])
 
@@ -88,13 +90,122 @@ if selected_page == "Demographics":
     bottom_data = sorted_data.head(10)
     st.dataframe(bottom_data[['City', 'Customer Count']] ,width=700)
 
+    customer_count = dataset['Zip Code'].value_counts().reset_index()
+    customer_count.columns = ['Zip Code', 'Customer Count']
+    # Merge with population data
+    merged = pd.merge(customer_count, city_Population_dataset, on='Zip Code', how='inner')
+    # Calculate ratio
+    merged['Customer-to-Population Ratio'] = merged['Customer Count'] / merged['Population']
     
+    st.subheader(":violet[Customer Penetration by Zip Code]")
+    fig2 = px.bar(
+    merged,
+    x='Zip Code',
+    y='Customer-to-Population Ratio',
+    hover_data=['Zip Code', 'Customer Count', 'Population'],
+    labels={'Customer-to-Population Ratio': 'Customer/Population Ratio'},
+    color_discrete_sequence=['red']
+    )
+    fig2.update_layout(
+    xaxis_title=None,
+    yaxis_title='Customer-to-Population Ratio',
+    xaxis_tickangle=-45,
+    hovermode="x unified",
+    xaxis=dict(
+        rangeslider=dict(visible=True)  
+    )
+    )
+    st.plotly_chart(fig2, use_container_width=True)  
+
 
 # Page 2: Service and Subscription
 if selected_page == "Services":
     st.subheader(":violet[Services and Subscriptions]")
+    service_options = st.selectbox("Select a Service Attribute", [
+        "Phone Service", "Internet Service", "Online Security", "Online Backup",
+        "Device Protection Plan", "Premium Tech Support", "Streaming TV",
+        "Streaming Movies", "Streaming Music", "Unlimited Data"
+    ])
+
+    st.subheader(f":violet[Customer Distribution by {service_options}]")
+
+    service_counts = dataset_cleaned[service_options].value_counts().reset_index()
+    service_counts.columns = [service_options, "Count"]
+
+    fig, ax = plt.subplots()
+    sns.barplot(x=service_options, y="Count", data=service_counts, palette="pastel", ax=ax)
+    ax.set_ylabel("Number of Customers")
+    ax.set_xlabel(service_options)
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+    st.pyplot(fig)
+
+    # Correlation between Internet Type and Selected Service
+    st.subheader(":violet[Internet Type vs Selected Service]")
+
+    internet_service = st.selectbox(
+        "Select a Service for Internet Type Comparison",
+        options=[
+            "Streaming TV", "Streaming Movies", "Streaming Music",
+            "Device Protection Plan", "Online Security", "Online Backup",
+            "Premium Tech Support", "Unlimited Data", "Phone Service"
+        ],
+        index=0
+    )
+
+    fig2 = px.histogram(
+        dataset_cleaned,
+        x="Internet Type",
+        color=internet_service,
+        barmode="group",
+        color_discrete_sequence=px.colors.qualitative.Set2
+    )
+    fig2.update_layout(
+        xaxis_title="Internet Type",
+        yaxis_title="Customer Count",
+        title={
+        'text': f"Internet Type vs {internet_service} Usage",
+        'x': 0.5, 
+        'xanchor': 'center' 
+    },) 
+   
+    st.plotly_chart(fig2, use_container_width=True)
+
+
+    # Correlation between Contract Type and Selected Service
+    st.subheader(":violet[Contract Type vs Selected Service]")
+
+    contract_service = st.selectbox(
+        "Select a Service for Contract Type Comparison",
+        options=[
+            "Streaming TV", "Streaming Movies", "Streaming Music",
+            "Device Protection Plan", "Online Security", "Online Backup",
+            "Premium Tech Support", "Unlimited Data", "Phone Service"
+        ],
+        index=0,
+        key="contract_service"  # To avoid conflict with previous selectbox
+    )
+
+    fig3 = px.histogram(
+        dataset_cleaned,
+        x="Contract",
+        color=contract_service,
+        barmode="group",
+        color_discrete_sequence=px.colors.qualitative.Pastel
+    )
+    fig3.update_layout(
+        xaxis_title="Contract Type",
+        yaxis_title="Customer Count",
+        title={
+        'text': f"Contract Type vs {contract_service} Usage",
+        'x': 0.5,
+        'xanchor': 'center'
+    },
+        )
+    st.plotly_chart(fig3, use_container_width=True)
+    
     
 # Page 3: Financial Trends and Customer Lifetime
 if selected_page == "Financial Trends":
-    st.subheader(":violet[Financial Trends and Customer Lifetime]")
-    
+    st.subheader(":violet[Financial Trends]")
+    # Select visualization
+   
