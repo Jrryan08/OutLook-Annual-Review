@@ -4,7 +4,6 @@ pandas
 numpy
 streamlit_option_menu
 mlflow
-mlflow.sklearn
 dagshub
 matplotlib
 seaborn
