@@ -15,7 +15,7 @@ packaging==24.2
 pillow==11.1.0
 plotly==6.0.0
 protobuf==5.29.3
-pyarrow==19.0.0
+pyarrow==13.0.0
 pydeck==0.9.1
 Pygments==2.19.1
 pyparsing==3.2.1
