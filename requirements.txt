@@ -7,7 +7,7 @@ mlflow
 dagshub
 matplotlib
 seaborn
-scikit-learn
 xgboost
-pycaret
 plotly
+scikit-learn==1.0.2
+pycaret==2.3.3
