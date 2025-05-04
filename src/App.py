@@ -13,4 +13,5 @@ Hyperparameter = st.Page("Hyperparameter.py", title="Hyperparameter", icon="🎬
 Conlusion = st.Page("Conlusion.py", title="Conlusion", icon="🎬")
 
 page = st.navigation([Welcome,About,Explore,Visualizations,Predictions,Hyperparameter,Conlusion ])
-page.run()
+st.write("Hello world")
+# page.run()
