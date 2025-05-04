@@ -13,7 +13,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 import xgboost as xgb
-from pycaret.classification import setup, compare_models, pull
 from sklearn.tree import plot_tree
 
 # Load Data
