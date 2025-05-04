@@ -90,33 +90,6 @@ if selected_page == "Demographics":
     bottom_data = sorted_data.head(10)
     st.dataframe(bottom_data[['City', 'Customer Count']] ,width=700)
 
-    customer_count = dataset['Zip Code'].value_counts().reset_index()
-    customer_count.columns = ['Zip Code', 'Customer Count']
-    # Merge with population data
-    merged = pd.merge(customer_count, city_Population_dataset, on='Zip Code', how='inner')
-    # Calculate ratio
-    merged['Customer-to-Population Ratio'] = merged['Customer Count'] / merged['Population']
-    
-    st.subheader(":violet[Customer Penetration by Zip Code]")
-    fig2 = px.bar(
-    merged,
-    x='Zip Code',
-    y='Customer-to-Population Ratio',
-    hover_data=['Zip Code', 'Customer Count', 'Population'],
-    labels={'Customer-to-Population Ratio': 'Customer/Population Ratio'},
-    color_discrete_sequence=['red']
-    )
-    fig2.update_layout(
-    xaxis_title=None,
-    yaxis_title='Customer-to-Population Ratio',
-    xaxis_tickangle=-45,
-    hovermode="x unified",
-    xaxis=dict(
-        rangeslider=dict(visible=True)  
-    )
-    )
-    st.plotly_chart(fig2, use_container_width=True)  
-
 
 # Page 2: Service and Subscription
 if selected_page == "Services":
@@ -207,5 +180,5 @@ if selected_page == "Services":
 # Page 3: Financial Trends and Customer Lifetime
 if selected_page == "Financial Trends":
     st.subheader(":violet[Financial Trends]")
-    # Select visualization
+    # Select visualization``
    
